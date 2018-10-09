@@ -10,12 +10,13 @@ rem v1.0    1-May-2012  First public release
 rem v1.0.01 16-Aug-2014 Added batch file for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
 rem v2.0.00 11-Jun-2018 Updated to v2; subcommand model by Simon Whitaker ^<sw@netcetera.org^>
 rem v2.0.01 13-Jun-2018 Added optional parameter for list subcommand, added search subcommand, added support for GIBO_BOILERPLATES by Kody Brown ^<thewizard@wasatchwizard.com^>
+rem v2.2.00 08-Oct-2018 Updated to support gitattributes instead of gitignore by Jarrod Davis ^<developer@jarrodldavis.com^>
 
 goto :setup
 
 
 :version
-    echo %basename% 2.0.0 by Jarrod Davis ^<developer@jarrodldavis.com^>
+    echo %basename% 2.2.0 by Jarrod Davis ^<developer@jarrodldavis.com^>
     echo https://github.com/jarrodldavis/gabo
     goto :eof
 

@@ -9,7 +9,7 @@ current_repo_rev=$(cd $local_repo 2>/dev/null && git rev-parse HEAD)
 remote_web_root=https://raw.github.com/alexkaratarakis/gitattributes/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 2.1.0 by Jarrod Davis <developer@jarrodldavis.com>"
+    echo "$(basename $0) 2.2.0 by Jarrod Davis <developer@jarrodldavis.com>"
     echo "https://github.com/jarrodldavis/gabo"
 }
 
