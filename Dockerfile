@@ -4,9 +4,9 @@ FROM alpine
 RUN apk --no-cache --update add \
       ca-certificates  git openssh util-linux && \
       rm -rf /var/lib/apt/lists/* && \
-      rm /var/cache/apk/*
+      rm -f /var/cache/apk/*
 
-RUN git clone https://github.com/github/gitignore.git /root/.gitignore-boilerplates
-COPY gibo gibo
+RUN git clone https://github.com/alexkaratarakis/gitattributes.git /root/.gitattributes-boilerplates
+COPY gabo gabo
 
-ENTRYPOINT ["./gibo"]
+ENTRYPOINT ["./gabo"]
