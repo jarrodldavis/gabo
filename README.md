@@ -1,112 +1,84 @@
-# gibo: fast access to .gitignore boilerplates
+# gabo: fast access to .gitattributes boilerplates
 
-**gibo** (short for .gitignore boilerplates) is a shell script to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
+**gabo** (short for .gitattributes boilerplates) is a shell script to help you easily access .gitattributes boilerplates from [github.com/alexkaratarakis/gitattributes](https://github.com/alexkaratarakis/gitattributes).
 
 ## Typical usage
 
-    $ gibo dump Swift Xcode >> .gitignore
+    $ gabo dump Common CSharp VisualStudio >> .gitattributes
 
-For additional usage instructions, run `gibo help`.
+For additional usage instructions, run `gabo help`.
 
 ## Installation
 
-### Installation on OS X using [Homebrew](http://mxcl.github.com/homebrew/)
+### Installation on *nix platforms
 
-    brew install gibo
+Just download `gabo` and put it somewhere on your $PATH. Then:
 
-### Installation on Fedora Linux
-
-`gibo` is avaiable as a [COPR repository](https://copr.fedorainfracloud.org/). It provides packages for main script and bash / zsh completions:
-
-    dnf copr enable saschpe/gibo
-    dnf install gibo gibo-bash-completion gibo-zsh-completion
-
-### Installation on other (*nix) platforms
-
-Just download `gibo` and put it somewhere on your $PATH. Then:
-
-    chmod +x /path/to/gibo   # Make gibo executable
-    gibo update              # Initialise gibo
+    chmod +x /path/to/gabo   # Make gabo executable
+    gabo update              # Initialise gabo
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
-    curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
-        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo update
+    curl -L https://raw.github.com/jarrodldavis/gabo/master/gabo \
+        -so ~/bin/gabo && chmod +x ~/bin/gabo && gabo update
 
 ### Installation on Windows
 
-#### Using scoop
-
-The easiest way to install `gibo` on Windows is to use [scoop](https://github.com/lukesampson/scoop), a PowerShell-based package-manager of sorts for Windows:
-
-    scoop update
-    scoop install gibo
-
-A great benefit to using scoop, is that it provides an easy way to update its packages, including gibo:
-
-    scoop update
-    scoop update gibo
-
 #### git installation
 
-You can download the whole `gibo` repo directly from GitHub:
+You can download the whole `gabo` repo directly from GitHub:
 
     md "C:\Users\<Your User>\bin"
     cd /D "C:\Users\<Your User>\bin"
-    git clone https://github.com/simonwhitaker/gibo.git gibo
+    git clone https://github.com/jarrodldavis/gabo.git gabo
 
-Then add the full gibo directory (`C:\Users\<Your User>\bin\gibo`) to your system's PATH environment variable.
+Then add the full gabo directory (`C:\Users\<Your User>\bin\gabo`) to your system's PATH environment variable.
 
 #### Manual installation
 
-To manually install only the `gibo.bat` file, download it to your computer and save it to any directory that is in your PATH.
+To manually install only the `gabo.bat` file, download it to your computer and save it to any directory that is in your PATH.
 
-Right-click [this link](https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo.bat) and select 'Save target as...' (or 'Save link as...' depending on your browser) to save it to your computer.
+Right-click [this link](https://raw.githubusercontent.com/jarrodldavis/gabo/master/gabo.bat) and select 'Save target as...' (or 'Save link as...' depending on your browser) to save it to your computer.
 
-A good directory to put the file is `C:\Users\<Your User>\bin` and add that directory to your system's PATH environment variable. Where ever you put it, make sure the batch file is accessible via `where gibo`.
+A good directory to put the file is `C:\Users\<Your User>\bin` and add that directory to your system's PATH environment variable. Where ever you put it, make sure the batch file is accessible via `where gabo`.
 
 ### Installation on Docker
 
 Just type the following command.
 
-    $ docker run --rm simonwhitaker/gibo
+    $ docker run --rm jarrodldavis/gabo
 
 ## Tab completion in bash, zsh and fish
 
-bash, zsh and fish users can enjoy the deluxe gibo experience by enabling tab completion of available boilerplate names.
+bash, zsh and fish users can enjoy the deluxe gabo experience by enabling tab completion of available boilerplate names.
 
 Sorry, there is no tab completion support in Windows.
 
 ### bash instructions
 
-Copy `gibo-completion.bash` into a `bash_completion.d` folder:
+Copy `gabo-completion.bash` into a `bash_completion.d` folder:
 
 * `/etc/bash_completion.d`
 * `/usr/local/etc/bash_completion.d`
 * `~/bash_completion.d`
 
-or copy it somewhere (e.g. ~/.gibo-completion.bash) and put the following in your .bashrc:
+or copy it somewhere (e.g. ~/.gabo-completion.bash) and put the following in your .bashrc:
 
-    source ~/.gibo-completion.bash
+    source ~/.gabo-completion.bash
 
 ### zsh instructions
 
-Copy `gibo-completion.zsh` somewhere in your `$fpath`. The convention for autoloaded functions used in completion is that they start with an underscore, so I suggest you rename it to `_gibo`.
-
-Alternatively, you can use `gibo-completion.zsh` as an [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
+Copy `gabo-completion.zsh` somewhere in your `$fpath`. The convention for autoloaded functions used in completion is that they start with an underscore, so I suggest you rename it to `_gabo`.
 
 ### fish instructions
 
-Copy `gibo.fish` to somewhere in your `$fish_complete_path`.
-
-## Use gibo to generate .hgignore files
-
-The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax. This means that you can use gibo to generate .hgignore files, as long as the .hgignore files use the `glob` syntax:
-
-    echo 'syntax: glob' > .hgignore
-    $ gibo dump Python TextMate >> .hgignore
+Copy `gabo.fish` to somewhere in your `$fish_complete_path`.
 
 ## Credits
+
+gabo was written by Jarrod Davis ([@jarrodldavis](http://twitter.com/ahylianhuman))
+
+### gibo
 
 gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
 
