@@ -13,7 +13,7 @@ For additional usage instructions, run `gabo help`.
 ### Installation on macOS using [Homebrew](https://brew.sh)
 
     brew tap jarrodldavis/tap
-    brew install gibo
+    brew install gabo
 
 ### Installation on other *nix platforms
 
