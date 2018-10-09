@@ -2,8 +2,8 @@
 @setlocal EnableDelayedExpansion
 @echo off
 
-rem Script for easily accessing gitignore boilerplates from
-rem https://github.com/github/gitignore
+rem Script for easily accessing gitattributes boilerplates from
+rem https://github.com/alexkaratarakis/gitattributes
 rem
 rem Change log
 rem v1.0    1-May-2012  First public release
@@ -15,21 +15,21 @@ goto :setup
 
 
 :version
-    echo %basename% 2.0.0 by Simon Whitaker ^<sw@netcetera.org^>
-    echo https://github.com/simonwhitaker/gitignore-boilerplates
+    echo %basename% 2.0.0 by Jarrod Davis ^<developer@jarrodldavis.com^>
+    echo https://github.com/jarrodldavis/gabo
     goto :eof
 
 :usage
     call :version
     echo.
-    echo Fetches gitignore boilerplates from github.com/github/gitignore
+    echo Fetches gitattributes boilerplates from github.com/alexkaratarakis/gitattributes
     echo.
     echo Usage:
     echo     %basename% [options]
     echo     %basename% [boilerplate boilerplate...]
     echo.
     echo Example:
-    echo     %basename% Python TextMate ^>^> .gitignore
+    echo     %basename% Common CSharp VisualStudio ^>^> .gitattributes
     echo.
     echo Options:
     echo     list [expr]   List available boilerplates
@@ -50,12 +50,12 @@ goto :setup
 
     set "dumping="
 
-    set "remote_repo=https://github.com/github/gitignore.git"
+    set "remote_repo=https://github.com/alexkaratarakis/gitattributes.git"
 
-    rem Allow using the `GIBO_BOILERPLATES` system envar
+    rem Allow using the `GABO_BOILERPLATES` system envar
     rem for specifying the boilerplates directory.
-    if defined GIBO_BOILERPLATES set "local_repo=%GIBO_BOILERPLATES%"
-    if not defined GIBO_BOILERPLATES set "local_repo=%AppData%\.gitignore-boilerplates"
+    if defined GABO_BOILERPLATES set "local_repo=%GABO_BOILERPLATES%"
+    if not defined GABO_BOILERPLATES set "local_repo=%AppData%\.gitattributes-boilerplates"
 
     rem No args passed in, so show usage.
     if "%~1"=="" call :usage && goto :end
@@ -94,16 +94,16 @@ goto :setup
     echo Invalid argument: %~1
     echo Did you mean:
 
-    rem Is there a .gitignore file?
+    rem Is there a .gitattributes file?
     set "_foundfile="
-    if exist "%local_repo%\%~1.gitignore" set "_foundfile=yes"
-    if exist "%local_repo%\Global\%~1.gitignore" set "_foundfile=yes"
+    if exist "%local_repo%\%~1.gitattributes" set "_foundfile=yes"
+    if exist "%local_repo%\Global\%~1.gitattributes" set "_foundfile=yes"
     if defined _foundfile (
         echo     `%basename% dump %*`
         echo     `%basename% list %*`
     )
 
-    rem Did the user mean to search within .gitignore files?
+    rem Did the user mean to search within .gitattributes files?
     echo     `%basename% search %*`
 
     endlocal && exit /B 1
@@ -122,16 +122,9 @@ goto :setup
 :list
     call :init
 
-    echo === Languages ===
+    echo === Boilerplates ===
     echo.
-    for /f %%G in ('dir /b /on "%local_repo%\*%~1*.gitignore"') do (
-        echo %%~nG
-    )
-
-    echo.
-    echo === Global ===
-    echo.
-    for /f %%G in ('dir /b /on "%local_repo%\Global\*%~1*.gitignore"') do (
+    for /f %%G in ('dir /b /on "%local_repo%\*%~1*.gitattributes"') do (
         echo %%~nG
     )
 
@@ -155,7 +148,7 @@ goto :setup
     rem              Specifies a file or files to search.
 
     pushd "%local_repo%"
-    findstr /S /R /I /N /P /A:03 "%~1" *.gitignore
+    findstr /S /R /I /N /P /A:03 "%~1" *.gitattributes
     popd
 
     goto :eof
@@ -177,19 +170,12 @@ goto :setup
 :dump
     call :init --silently
 
-    set "language_file=%local_repo%\%~1.gitignore"
-    set "global_file=%local_repo%\Global\%~1.gitignore"
+    set "boilerplate_file=%local_repo%\%~1.gitattributes"
 
-    if exist "%language_file%" (
+    if exist "%boilerplate_file%" (
         echo ### %~1
         echo.
-        type "%language_file%"
-        echo.
-        echo.
-    ) else if exist "%global_file%" (
-        echo ### %~1
-        echo.
-        type "%global_file%"
+        type "%boilerplate_file%"
         echo.
         echo.
     ) else (
