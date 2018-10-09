@@ -10,7 +10,12 @@ For additional usage instructions, run `gabo help`.
 
 ## Installation
 
-### Installation on *nix platforms
+### Installation on macOS using [Homebrew](https://brew.sh)
+
+    brew tap jarrodldavis/tap
+    brew install gibo
+
+### Installation on other *nix platforms
 
 Just download `gabo` and put it somewhere on your $PATH. Then:
 
@@ -76,11 +81,11 @@ Copy `gabo.fish` to somewhere in your `$fish_complete_path`.
 
 ## Credits
 
-gabo was written by Jarrod Davis ([@jarrodldavis](http://twitter.com/ahylianhuman))
+gabo was written by Jarrod Davis ([@jarrodldavis](https://twitter.com/ahylianhuman))
 
 ### gibo
 
-gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
+gibo was written by Simon Whitaker ([@s1mn](https://twitter.com/s1mn))
 
 Thanks to [yevgenko](https://github.com/yevgenko) for adding the curl-based installation instructions.
 
