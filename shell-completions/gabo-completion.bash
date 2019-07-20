@@ -33,7 +33,7 @@ _gabo()
             subcommand="${COMP_WORDS[1]}"
             case $subcommand in
                 dump)
-                    opts=$( find ${GABO_BOILERPLATES:-"$HOME/.gitattributes-boilerplates"} -name "*.gitattributes" -exec basename \{\} .gitattributes \; )
+                    opts=$( find ${GABO_BOILERPLATES:-"$HOME/.gitattributes-boilerplates"} -name "?*.gitattributes" -exec basename \{\} .gitattributes \; )
                     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
                     ;;
                 *)

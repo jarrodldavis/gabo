@@ -35,7 +35,7 @@ function __gabo_completion_list
     if set -q GABO_BOILERPLATES
         set gabo_home $GABO_BOILERPLATES
     end
-    find "$gabo_home" -name "*.gitattributes" -exec basename \{\} .gitattributes \;
+    find "$gabo_home" -name "?*.gitattributes" -exec basename \{\} .gitattributes \;
 end
 
 complete -c gabo -n "__gabo_wants_subcommand" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
