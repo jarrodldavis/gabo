@@ -15,7 +15,7 @@ goto :setup
 
 
 :version
-    echo %basename% 2.3 by Jarrod Davis ^<developer@jarrodldavis.com^>
+    echo %basename% 2.3.1 by Jarrod Davis ^<developer@jarrodldavis.com^>
     echo https://github.com/jarrodldavis/gabo
     goto :eof
 
