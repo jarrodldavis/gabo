@@ -9,7 +9,7 @@ current_repo_rev=$(cd $local_repo 2>/dev/null && git rev-parse HEAD)
 remote_web_root=https://raw.github.com/alexkaratarakis/gitattributes/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 2.2.0 by Jarrod Davis <developer@jarrodldavis.com>"
+    echo "$(basename $0) 2.2.2 by Jarrod Davis <developer@jarrodldavis.com>"
     echo "https://github.com/jarrodldavis/gabo"
 }
 
@@ -29,6 +29,7 @@ Commands:
     dump BOILERPLATE...   Write boilerplate(s) to STDOUT
     help                  Display this help text
     list                  List available boilerplates
+    root                  Show the directory where gabo stores its boilerplates
     search STR            Search for boilerplates with STR in the name
     update                Update list of available boilerplates
     version               Display current script version
@@ -59,12 +60,14 @@ list() {
         shape='cat'
     fi
 
-    [ -t 1 ] && printf "=== Boilerplates ===\n\n"
-
-    for path in $(ls "$local_repo"/*.gitattributes | sort -f); do
+    for path in $(find "$local_repo" -name '*.gitattributes' | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
     done | eval ${shape}
+}
+
+root() {
+    echo $local_repo
 }
 
 search() {
@@ -86,12 +89,13 @@ update() {
 dump() {
     init --silently
 
-    boilerplate_file=$(find "$local_repo" -maxdepth 1 -iname "$1.gitattributes" | head -n 1)
+    language_file=$(find "$local_repo" -iname "$1.gitattributes" | head -n 1)
+    language_file_relative=${language_file#"$local_repo/"}
 
-    if [ -n "$boilerplate_file" ]; then
-        echo "### $remote_web_root/$(basename $boilerplate_file)"
+    if [ -n "$language_file" ]; then
+        echo "### $remote_web_root/$language_file_relative"
         echo
-        cat "$boilerplate_file"
+        cat "$language_file"
         echo
         echo
     else
@@ -116,6 +120,10 @@ while [ $# -gt 0 ]; do
             ;;
         list )
             list
+            exit 0
+            ;;
+        root )
+            root
             exit 0
             ;;
         update )

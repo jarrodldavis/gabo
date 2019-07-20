@@ -10,13 +10,12 @@ rem v1.0    1-May-2012  First public release
 rem v1.0.01 16-Aug-2014 Added batch file for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
 rem v2.0.00 11-Jun-2018 Updated to v2; subcommand model by Simon Whitaker ^<sw@netcetera.org^>
 rem v2.0.01 13-Jun-2018 Added optional parameter for list subcommand, added search subcommand, added support for GIBO_BOILERPLATES by Kody Brown ^<thewizard@wasatchwizard.com^>
-rem v2.2.00 08-Oct-2018 Updated to support gitattributes instead of gitignore by Jarrod Davis ^<developer@jarrodldavis.com^>
 
 goto :setup
 
 
 :version
-    echo %basename% 2.2.0 by Jarrod Davis ^<developer@jarrodldavis.com^>
+    echo %basename% 2.2 by Jarrod Davis ^<developer@jarrodldavis.com^>
     echo https://github.com/jarrodldavis/gabo
     goto :eof
 
@@ -26,17 +25,18 @@ goto :setup
     echo Fetches gitattributes boilerplates from github.com/alexkaratarakis/gitattributes
     echo.
     echo Usage:
-    echo     %basename% [options]
-    echo     %basename% [boilerplate boilerplate...]
+    echo     %basename% [command]
     echo.
     echo Example:
-    echo     %basename% Common CSharp VisualStudio ^>^> .gitattributes
+    echo     %basename% dump Common CSharp VisualStudio ^>^> .gitattributes
     echo.
     echo Options:
-    echo     list [expr]   List available boilerplates
+    echo     dump expr...  Dump boilerplate(s) to stdout
+    echo     help          Display this help text
+    echo     list          List available boilerplates
+    echo     root          Show the directory where gabo stores its boilerplates
     echo     search expr   Search inside boilerplates for expr
     echo     update        Update list of available boilerplates
-    echo     help          Display this help text
     echo     version       Display current script version
 
     goto :eof
@@ -78,6 +78,7 @@ goto :setup
     if /i "%a%"=="version"  call :version       & goto :end
     if /i "%a%"=="/v"       call :version       & goto :end
     if /i "%a%"=="list"     call :list "%~2"    & goto :end
+    if /i "%a%"=="root"     call :root          & goto :end
     if /i "%a%"=="search"   call :search "%~2"  & goto :end
     if /i "%a%"=="update"   call :update        & goto :end
 
@@ -131,6 +132,10 @@ goto :setup
 
     goto :eof
 
+:root
+    echo %local_repo%
+    goto :eof
+
 :search
     if "%~1"=="" echo %basename%: missing search expr.. && goto :eof
 
@@ -161,7 +166,7 @@ goto :setup
     if not defined __cloned (
         echo updating..
         pushd "%local_repo%"
-        git pull -q --autostash --ff origin master
+        git pull -q --ff origin master
         popd
     )
 

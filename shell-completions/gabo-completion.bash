@@ -1,5 +1,3 @@
-#!bash
-#
 # Bash completion for gabo
 #
 # INSTALLATION
@@ -29,7 +27,7 @@ _gabo()
 
     case $COMP_CWORD in
         1)
-            COMPREPLY=($(compgen -W "dump help list update version" -- ${cur}))
+            COMPREPLY=($(compgen -W "dump help list root search update version" -- ${cur}))
             ;;
         *)
             subcommand="${COMP_WORDS[1]}"

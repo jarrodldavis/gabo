@@ -39,6 +39,8 @@ function __gabo_completion_list
 end
 
 complete -c gabo -n "__gabo_wants_subcommand" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
+complete -c gabo -n "__gabo_wants_subcommand" -f -a "search" -d 'Search for boilerplates'
+complete -c gabo -n "__gabo_wants_subcommand" -f -a "root" -d 'Show the directory where gabo stores its boilerplates'
 complete -c gabo -n "__gabo_wants_subcommand" -f -a "help" -d 'Show help information'
 complete -c gabo -n "__gabo_wants_subcommand" -f -a "list" -d 'Show the list of available boilerplates'
 complete -c gabo -n "__gabo_wants_subcommand" -f -a "update" -d 'Update the list of available boilerplates'

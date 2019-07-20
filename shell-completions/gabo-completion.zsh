@@ -20,7 +20,7 @@
 #
 # CONTRIBUTING
 #
-# See https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org 
+# See https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
 # for tips on writing and testing zsh completion functions.
 #
 # CREDITS
@@ -31,9 +31,11 @@ _gabo_commands()
 {
     _gabo_commands=(
         'dump:Dump one or more boilerplates' \
-        'list:List available boilerplates' \
-        'update:Update list of available boilerplates' \
         'help:Display this help text' \
+        'list:List available boilerplates' \
+        'root:Show the directory where gabo stores its boilerplates' \
+        'search:Search for boilerplates' \
+        'update:Update list of available boilerplates' \
         'version:Display current script version'
     )
     _describe 'command' _gabo_commands
